@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ProfileFlow | Registration</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+
+<body>
+
+    <main class="page">
+
+        <!-- LEFT SIDE -->
+
+        <section class="intro">
+
+            <div class="intro-content">
+
+                <div class="badge">
+                    PROFILEFLOW
+                </div>
+
+                <h1>
+                    Build your
+                    <span>digital identity.</span>
+                </h1>
+
+                <p>
+                    Create your profile, showcase your skills,
+                    and build a professional identity through
+                    a secure interactive registration experience.
+                </p>
+
+
+                <div class="feature-list">
+
+                    <div class="feature">
+                        <span>01</span>
+                        <div>
+                            <strong>Smart Validation</strong>
+                            <p>
+                                Instant feedback before submission.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span>02</span>
+                        <div>
+                            <strong>Server Verified</strong>
+                            <p>
+                                Every submission is validated on the server.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span>03</span>
+                        <div>
+                            <strong>Dynamic Profile</strong>
+                            <p>
+                                Your submitted information becomes a profile.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+
+        <section class="form-section">
+
+            <div class="form-card">
+
+                <div class="form-header">
+
+                    <span class="step">
+                        01
+                    </span>
+
+                    <div>
+                        <h2>Create your profile</h2>
+
+                        <p>
+                            Enter your details to get started.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- SERVER ERRORS -->
+
+                <% if (errors && errors.length > 0) { %>
+
+                    <div class="error-box">
+
+                        <strong>
+                            Please fix the following:
+                        </strong>
+
+                        <ul>
+
+                            <% errors.forEach(error => { %>
+
+                                <li>
+                                    <%= error %>
+                                </li>
+
+                            <% }) %>
+
+                        </ul>
+
+                    </div>
+
+                <% } %>
+
+
+                <form
+                    id="registrationForm"
+                    action="/register"
+                    method="POST"
+                    onsubmit="return validateForm()"
+                >
+
+
+                    <!-- NAME -->
+
+                    <div class="input-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Sowndharya Saravanan"
+                            value="<%= oldData.fullName || '' %>"
+                            required
+                            minlength="3"
+                        >
+
+                        <small id="nameError"></small>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            value="<%= oldData.email || '' %>"
+                            required
+                        >
+
+                        <small id="emailError"></small>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="input-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="10 digit phone number"
+                            value="<%= oldData.phone || '' %>"
+                            maxlength="10"
+                            required
+                        >
+
+                        <small id="phoneError"></small>
+
+                    </div>
+
+
+                    <!-- DOB -->
+
+                    <div class="input-group">
+
+                        <label for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob"
+                            value="<%= oldData.dob || '' %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="two-column">
+
+                        <div class="input-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Minimum 8 characters"
+                                minlength="8"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Repeat password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <small id="passwordError"></small>
+
+
+                    <!-- GENDER -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Gender
+                        </label>
+
+                        <div class="radio-group">
+
+                            <label class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Female"
+                                    required
+                                >
+
+                                Female
+
+                            </label>
+
+
+                            <label class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Male"
+                                >
+
+                                Male
+
+                            </label>
+
+
+                            <label class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Other"
+                                >
+
+                                Other
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Skills
+                        </label>
+
+                        <div class="skills-grid">
+
+                            <label class="choice">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="Python"
+                                >
+                                Python
+                            </label>
+
+                            <label class="choice">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="JavaScript"
+                                >
+                                JavaScript
+                            </label>
+
+                            <label class="choice">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="Java"
+                                >
+                                Java
+                            </label>
+
+                            <label class="choice">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="SQL"
+                                >
+                                SQL
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BIO -->
+
+                    <div class="input-group">
+                        <!-- ABOUT YOU -->
+<div class="form-group">
+    <label for="bio">About You</label>
+
+    <textarea
+        id="bio"
+        name="bio"
+        maxlength="250"
+        minlength="20"
+        placeholder="Tell us about your interests and skills..."
+        required
+    ><%= oldData.bio || '' %></textarea>
+
+    <div class="counter">
+        <span id="bioCount">0</span>/250
+    </div>
+</div>
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            name="terms"
+                            value="accepted"
+                            required
+                        >
+
+                        <span>
+                            I agree to the terms and conditions.
+                        </span>
+
+                    </label>
+
+
+                    <!-- SUBMIT -->
+
+                    <button type="submit" id="submitButton">
+
+                        <span>
+                            Create Profile
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>

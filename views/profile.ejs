@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#f4efe5">
+
+    <title>ProfileFlow | Profile Created</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <main class="profile-page">
+
+        <div class="profile-card">
+
+            <!-- SUCCESS ICON -->
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <!-- STATUS BADGE -->
+            <span class="profile-badge">
+                PROFILE CREATED
+            </span>
+
+            <!-- WELCOME MESSAGE -->
+            <h1>
+                Welcome,
+                <span><%= user.fullName %></span>
+            </h1>
+
+            <p class="profile-intro">
+                Your information has been successfully validated
+                and temporarily stored on the server.
+            </p>
+
+            <!-- PERSONAL DETAILS -->
+            <div class="profile-grid">
+
+                <div class="profile-item">
+                    <small>Email</small>
+                    <strong><%= user.email %></strong>
+                </div>
+
+                <div class="profile-item">
+                    <small>Phone</small>
+                    <strong><%= user.phone %></strong>
+                </div>
+
+                <div class="profile-item">
+                    <small>Date of Birth</small>
+                    <strong><%= user.dob %></strong>
+                </div>
+
+                <div class="profile-item">
+                    <small>Gender</small>
+                    <strong><%= user.gender %></strong>
+                </div>
+
+            </div>
+
+            <!-- SKILLS -->
+            <section class="profile-section">
+
+                <div class="section-heading">
+                    <span>Skills</span>
+                </div>
+
+                <div class="skill-tags">
+
+                    <% if (Array.isArray(user.skills) && user.skills.length > 0) { %>
+
+                        <% user.skills.forEach(function(skill) { %>
+
+                            <span class="skill-tag">
+                                <%= skill %>
+                            </span>
+
+                        <% }); %>
+
+                    <% } else { %>
+
+                        <span class="skill-tag">
+                            No skills selected
+                        </span>
+
+                    <% } %>
+
+                </div>
+
+            </section>
+
+            <!-- ABOUT -->
+            <section class="profile-section">
+
+                <div class="section-heading">
+                    <span>About</span>
+                </div>
+
+                <p class="bio"><%= user.bio %></p>
+
+            </section>
+
+            <!-- SERVER STATUS -->
+            <div class="server-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    Validated and stored in server memory
+                </span>
+
+            </div>
+
+            <!-- RETURN BUTTON -->
+            <a href="/" class="back-button">
+                <span>←</span>
+                Create another profile
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
